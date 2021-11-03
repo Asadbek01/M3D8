@@ -28,12 +28,31 @@
         </ul>
        </div>
   </nav>
+  
   <div class="container">
       <div class="row justify-content-center">
           <div class="col-md-6">
               <h4 class="mt-5 mb-4">New Products</h4>
+              <form>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Email address</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Example select</label>
+                  <select class="form-control" id="exampleFormControlSelect1">
+                   
+                  </select>
+                </div>
+              
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Example textarea</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary">Submit</button>
+              </form>
               <ul class="list-of-products">
-                <!-- <li class="list-group-item">A second item</li> -->
+                
                
               </ul>
 
@@ -41,13 +60,10 @@
       </div>
   </div>
   <script>
-      window.onload = ()=>{
-getData()
-}
-      
+
       let url ='https://striveschool-api.herokuapp.com/api/product/'
 
-      const getData = async () => {
+    window.onload = async () => {
     const response = await fetch(url, {
         method: 'post',
         headers: {
@@ -62,16 +78,8 @@ getData()
             price: 100
         })
     })
-    const ul = document.querySelector(".list-of-products")
-    const body = await response.json()
-    console.log(body)
-    body.forEach(event => {
-const li =document.createElement('li')
-li.classList.add("list-of-items" ,"d-felx","justify-content-between,align-items-center")
-li.innerHTML = `<span>${event.name}</span><span>${event.description}</span>`
-ul.appendChild(li)    
-})
 }
+
 
 </script>
 

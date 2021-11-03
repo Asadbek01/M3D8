@@ -28,12 +28,33 @@
         </ul>
        </div>
   </nav>
+  
   <div class="container">
       <div class="row justify-content-center">
           <div class="col-md-6">
               <h4 class="mt-5 mb-4">New Products</h4>
+              <form>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Name</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" >
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Brand</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" >
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Image</label>
+                    <input type="url" class="form-control" id="ImageURL" >
+                  </div>
+              
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Description</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary">Submit</button>
+              </form>
               <ul class="list-of-products">
-                <!-- <li class="list-group-item">A second item</li> -->
+                
                
               </ul>
 
@@ -41,40 +62,27 @@
       </div>
   </div>
   <script>
-      
+
       let url ='https://striveschool-api.herokuapp.com/api/product/'
 
-  window.onload = async()=>{
-     const response = await fetch(url,{
-    method:"GET",
-    headers: {
-"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOWI0NmFhY2FhMjAwMTU1MmEzYWQiLCJpYXQiOjE2MzU5NTAxODYsImV4cCI6MTYzNzE1OTc4Nn0._E_lJWJ1lZeANUzgoqj0T59qcDqRmHO74ra4usVCgPs"
-}        
-     })
-     const body = await response.json()
-     
+    window.onload = async () => {
+    const response = await fetch(url, {
+        method: 'post',
+        headers: {
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTgyOGJmM2FhY2FhMjAwMTU1MmExNmQiLCJpYXQiOjE2MzU5NDU0NTksImV4cCI6MTYzNzE1NTA1OX0.68CC8Jf4IHn7VZW39FPf-bHEv8MKux00DbaR2yT026Y",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: "app test 1",
+            description: "somthing longer",
+            brand: "nokia",
+            imageUrl: "https://drop.ndtv.com/TECH/product_database/images/2152017124957PM_635_nokia_3310.jpeg?downsize=*:420&output-quality=80",
+            price: 100
+        })
+    })
+}
 
-  } 
 
-//   const myEvent = {
-//       name:
-//       description:
-//       brand:
-//       price:
-//       imageURL:
-
-//   }
-    
-//  const getData =()=>{
-//    try{
-//        const res  = await fetch(url,{
-//            method: "POST",
-//            body: JSON.stringify(myEvent),
-//            headers:{
-//                "Content-Type":"application/json,"
-//            }
-//        })
-//    }
 </script>
 
    
