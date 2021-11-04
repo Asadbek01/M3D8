@@ -66,7 +66,7 @@ products.forEach(item => {
         <div class="card-body">
           <h5 class="card-title">${item.brand}</h5>
           <p class="card-text">${item.description}</p>
-          <a href="#" class="btn btn-primary">Derails</a>
+          <a href="./details.html?itemId=${item._id}" class="btn btn-primary">Details</a>
           <button class = 'btn btn-success'>${item.price}$</button>
         </div>
       </div>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+    <title>Hello, world!</title>
+<style>
+  .card{
+    height: 87vh;
+    margin-top: 20px;
+  }
+</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Strivazon</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./backOffice.html">BackOffice</a>
+            </li>
+        </ul>
+       </div>
+  </nav>
+  <img class="detail-img" src="https://media.istockphoto.com/photos/life-planning-concepts-coins-in-bottle-and-generation-scale-picture-id1270710538?b=1&k=20&m=1270710538&s=170667a&w=0&h=OYAzUopLgf4XKQpZDqFh5ucrbAKOdfeBAplamLR-7-c="
+  alt="details image"/>
+
+  <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10 col-lg-8">
+        <h3 class="mt-5 mb-4">Details</h3>
+        <div class="item-details">
+            
+        </div>
+    </div>
+</div>
+</div>
+ 
+
+  <script>
+    const itemId = new URLSearchParams(location.search).get("itemId")
+    console.log("Resource ID is: " + itemId)
+      
+        // const endpoint = eventId ? "https://striveschool-api.herokuapp.com/api/agenda/" + itemId)
+        // const method = eventId ? "PUT" : "POST"
+
+      
+        window.onload = async () => {
+try{
+const response =await fetch("https://striveschool-api.herokuapp.com/api/agenda/" + itemId)
+const itemData = await response.json();
+ const { name, description, price, brand, _id, imageUrl, createdAt, updatedAt} = itemData
+ const container = document.querySelector(".item-details")
+ container.innerHTML = `
+ <h1 class="font-weight-bolder mb-4" style="line-height: 1;">Item Name</h1>
+            <p>description</p>
+            <p class="text-monospace">05/05/21</p>
+            <h6 class="bg-light py-3 pl-2">server details</h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item pl-2">id:123456</li>
+                <li class="list-group-item pl-2">createdAt:565454 </li>
+                <li class="list-group-item pl-2">updateAt:654646</li>
+            </ul>
+            <button class = " btn btn-success">Edit item</button>
+ `
+
+}catch(error){
+    console.log(error);
+}
+        }
+
+        //     const submitBtn = document.querySelector("button[type='submit']")
+
+        //     if (eventId) {
+        //         document.getElementById("subtitle").innerText = " — Edit Event"
+        //         submitBtn.querySelector("span").innerText = "Edit Event"
+        //         submitBtn.classList.add("btn-success")
+
+        //         document.getElementById("delete-btn").classList.remove("d-none") // reveals the delete button only in the event of being in the "edit mode"
+
+        //         const response = await fetch(endpoint)
+        //         const eventDetails = await response.json() // retrieves data object about the specific record we are editing
+
+        //         //populates the input fields with the data coming from the fetch
+        //         document.getElementById("name").value = eventDetails.name
+        //         document.getElementById("description").value = eventDetails.description
+        //         document.getElementById("price").value = eventDetails.price
+        //         document.getElementById("time").value = eventDetails.time.split(".")[0]
+
+        //     } else {
+        //         document.getElementById("subtitle").innerText = " — Create an Event"
+        //         submitBtn.classList.add("btn-primary")
+        //     }
+        // }
+
+ 
+
+</script>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+  
+  </body>
+</html>
