@@ -34,8 +34,8 @@
   </nav>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6">
-        <h4 class="mt-5 mb-4">New Products</h4>
+      <div class="col-md-10">
+        <h4 class="mt-5 mb-4 text-center">New Products</h4>
         <form onsubmit="handleSubmit(event)">
           <div class="form-group">
               <label for="name">Name of product</label>
@@ -66,57 +66,25 @@
           
          
           <div class="d-flex justify-content-between">
-              <button type="submit" class="btn btn-primary" ><span>Submit
+            <div class="buttons">
+              <button class="btn btn-primary" ><span>Submit
                       </span>
-                  <!-- <div class="spinner-border spinner-border-sm d-none" role="status">
-                      <span class="sr-only">Loading...</span>
-                  </div>
-              </button>
-              <button id="delete-btn" type="button" class="btn btn-danger d-none"
-                  onclick="handleDelete()"><span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                          class="bi bi-trash" viewBox="0 0 16 16">
-                          <path
-                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                          <path fill-rule="evenodd"
-                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                      </svg>
-
-                  </span></button> -->
-
+                 <button class="btn btn-warning ml-2" type= "button">Reset</button>
+                 
           </div>
+        </div>
       </form>
       </div>
     </div>
   </div>
   <script>
-        // const endpoint = eventId ? "https://striveschool-api.herokuapp.com/api/agenda/" + eventId : "https://striveschool-api.herokuapp.com/api/agenda/"
-        // const method = eventId ? "PUT" : "POST"
 
-      
-        // window.onload = async () => {
-        //     console.log("Resource ID is: " + eventId)
-        //     const submitBtn = document.querySelector("button[type='submit']")
-
-        //     if (eventId) {
-        //         document.getElementById("subtitle").innerText = " — Edit Event"
-        //         submitBtn.querySelector("span").innerText = "Edit Event"
-        //         submitBtn.classList.add("btn-success")
-
-        //         document.getElementById("delete-btn").classList.remove("d-none") 
-        //         const response = await fetch(endpoint)
-        //         const eventDetails = await response.json() 
-
-        //         document.getElementById("name").value = eventDetails.name
-        //         document.getElementById("description").value = eventDetails.description
-        //         document.getElementById("price").value = eventDetails.price
-        //         document.getElementById("time").value = eventDetails.time.split(".")[0]
-
-        //     } else {
-        //         document.getElementById("subtitle").innerText = " — Create an Event"
-        //         submitBtn.classList.add("btn-primary")
-        //     }
-        // }
+const productId = new URLSearchParams(window.location.search).get('productId')
+const url = productId ? `https://striveschool-api.herokuapp.com/api/product/${itemId}` : 'https://striveschool-api.herokuapp.com/api/product'
+ const form = document.querySelector('form')
+ form.addEventListener('submit' ,e =>{
+   e.preventDefault();
+ })
 
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -144,6 +112,36 @@
       }
 
     }
+    const handleDelete = async()=>{
+      const handleDelete = async () => {
+            try {
+                const response = await fetch(endpoint, { method: "DELETE" })
+                if (response.ok) {
+                    const deletedObj = await response.json()
+                    showAlert("success", "Event with id: " + deletedObj._id + " deleted successfully") // shows the custom alert
+                    setTimeout(() => { window.location.assign("/") }, 3500) // pushes the user to the homepage after 3,5 seconds
+                } else {
+                    showAlert("danger", "Something went wrong in the deletion process")
+                }
+            } catch (err) {
+                showAlert("danger", err.message)
+            }
+        }
+    }
+
+     const showAlert = (type, msg) => {
+            const alertContainer = document.getElementById("alert-box")
+
+            alertContainer.innerHTML = `
+            <div class="alert alert-${type}" role="alert">
+                ${msg}
+            </div>`
+
+
+            setTimeout(() => {
+                alertContainer.innerHTML = ""
+            }, 3000)
+        }
 
 
   </script>
